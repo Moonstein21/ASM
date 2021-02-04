@@ -1,0 +1,42 @@
+﻿@model testad.Models.DocumentsIB
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+<h1 class="text-center">Вы действительно хотите удалить этот документ?</h1>
+
+<div>
+    <table class="table table-striped d-xl-table table-dark">
+        <thead hidden>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.name)
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayFor(model => model.name)
+                </th>
+                <th>
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="id" />
+                        <input type="submit" value="Удалить" class="btn btn-danger" />
+                        <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+                    </form>
+                </th>
+                <th></th>
+
+            </tr>
+        </tbody>
+    </table>
+
+   
+    

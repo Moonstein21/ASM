@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\test</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Controllers/DocumentsIBsController.cs">
+      <publishTime>05/12/2020 15:52:22</publishTime>
+    </File>
+    <File Include="Controllers/examplesController.cs">
+      <publishTime>04/14/2020 14:33:14</publishTime>
+    </File>
+    <File Include="Controllers/InformationSystemsController.cs">
+      <publishTime>05/06/2020 20:04:59</publishTime>
+    </File>
+    <File Include="Controllers/PostListsController.cs">
+      <publishTime>05/06/2020 20:08:47</publishTime>
+    </File>
+    <File Include="Controllers/RequestsController.cs">
+      <publishTime>06/04/2020 14:26:42</publishTime>
+    </File>
+    <File Include="Controllers/SubdivitionsController.cs">
+      <publishTime>05/29/2020 10:29:04</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

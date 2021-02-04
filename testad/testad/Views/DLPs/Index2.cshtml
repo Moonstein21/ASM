@@ -1,0 +1,37 @@
+﻿@model IEnumerable<testad.Models.DLP>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Список изменненных учетных  записей</h1>
+
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+             
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+                @foreach (var item2 in HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("seach"))
+                {
+                    
+                    <tr>
+                        <th>
+                        @item2
+                    </th>
+
+                    </tr>
+
+                    
+                }
+       
+    </tbody>
+</table>
+

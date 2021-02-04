@@ -1,0 +1,50 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IEnumerable<testad.Models.DLP>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Создать новую ИСиС</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+
+                <table class="table table-striped d-xl-table table-dark">
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.name)
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Вернуться назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

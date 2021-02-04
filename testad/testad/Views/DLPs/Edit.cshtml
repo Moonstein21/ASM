@@ -1,0 +1,66 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IndexViewModel4
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Результаты проверки</h1>
+
+<hr />
+<div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="id" />
+        <table class="table table-striped d-xl-table table-dark">
+            <thead hidden>
+                <tr>
+                    <th>
+                        <label asp-for="name" class="control-label"></label>
+                    </th>
+                    
+                    <th>
+                        <label asp-for="login" class="control-label"></label>
+                    </th>
+                    <th>
+                        <label asp-for="gro" class="control-label"></label>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (DLP sub in Model.DLPs)
+                {
+                    <tr>
+                        <th>
+                            <label> <input asp-for="name" class="form-control" />@sub.name</label>
+                        </th>
+                        <th>
+                            <label> <input asp-for="login" class="form-control" />@sub.login</label>
+                        </th>
+                        <th>
+                            <label> <input asp-for="gro" class="form-control" />@sub.gro</label>
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-warning" />
+            <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+        </div>
+    </form>
+</div>
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

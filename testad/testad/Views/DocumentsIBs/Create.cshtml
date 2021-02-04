@@ -1,0 +1,40 @@
+﻿@model IEnumerable<testad.Models.DocumentsIB>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Список документов</h1>
+
+
+
+<form method="post" asp-controller="DocumentsIBs" asp-action="FileUpload" enctype="multipart/form-data">
+    <div class="form-group">
+        <div class="custom-file">
+            <table class="table table-striped d-xl-table table-dark">
+                <thead>
+                    <tr>
+                        <th>
+                            <label for="exampleFormControlFile1">Выберите файл для загрузки</label>
+                        </th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>
+                            <input type="file" name="file" class="form-control-file btn btn-dark" id="exampleFormControlFile1">
+                        </th>
+                        <th>
+                            <button type="submit" class="btn btn-success">Загрузить</button>
+                            <a asp-action="Index" class="btn btn-primary">Вернуться назад</a>
+                        </th>
+                        <th> 
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
