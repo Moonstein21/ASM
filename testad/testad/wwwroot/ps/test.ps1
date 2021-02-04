@@ -1,0 +1,1 @@
+﻿New-Item -Path 'C:\\Distrib\\file.txt' -ItemType 'File'
