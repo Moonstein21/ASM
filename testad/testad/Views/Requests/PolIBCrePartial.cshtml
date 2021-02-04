@@ -1,0 +1,38 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel
+
+
+
+    <div>
+            <label class="control-label" id="ib1">Ознакомтесь с документами АО "Газпром газораспределение Астрахань" по информационной безопасности.</label>
+        <div class="form-group form-check" hidden id="ib2">
+            <label class="form-check-label" for="defaultCheck1">
+                <input class="form-check-input" type="checkbox" id="checkib" disabled/>С документами АО "Газпром газораспределение Астрахань" по информационной безопасности ознакомлен и обязуюсь исполнять
+            </label>
+            <label class="form-check-label" type="checkbox" for="defaultCheck1" hidden>
+                <input class="form-check-input" asp-for="documents" id="checkib2"/>
+            </label>
+        </div> 
+        <div>
+            <table class="table">
+                <thead>
+                    @foreach (DocumentsIB doc in Model.DocumentsIBs)
+                    {
+                        if (doc.name == "Памятка пользователю по ИБ.pdf")
+                        {
+                            <tr>
+                                <td>
+                                    @doc.name
+                                </td>
+                                <td>
+                                    <a asp-action="GetFile" asp-route-id="@doc.id" onclick="ibozn();" class="btn btn-success" target="_blank"> Ознакомится</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </thead>
+            </table>
+        </div>
+    </div>

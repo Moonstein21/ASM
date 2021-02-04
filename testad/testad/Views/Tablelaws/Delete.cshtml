@@ -1,0 +1,49 @@
+﻿@model testad.Models.Tablelaw
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1 class="text-center">Вы действительно хотите удалить права?</h1>
+
+<div>
+    <table class="table table-striped d-xl-table table-dark">
+        <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.spod)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.pos)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.isystem)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.role)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayFor(model => model.spod)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.pos)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.isystem)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.role)
+                </th>
+            </tr>
+        </tbody>
+    </table>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+    </form>
+</div>

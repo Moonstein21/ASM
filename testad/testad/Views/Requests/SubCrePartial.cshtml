@@ -1,0 +1,33 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IndexViewModel
+
+
+
+<div>
+    <label asp-for="subdivision" control-label">Структурное подразделение</label>
+</div>
+<div class="input-group-prepend">
+    <select asp-for="subdivision" class="custom-select" id="inputGroupSelect01">
+        @if (Model == null)
+        {
+            <option>элементы не найдены</option>
+        }
+        else
+        {
+            @foreach (Subdivition sub in Model.Subdivitions)
+            {
+                if (sub.subdiv == HttpContextAccessor.HttpContext.Session.GetString("Deportment"))
+                {
+                    <option>@sub.subdiv</option>
+                }
+             }
+        }
+    </select>
+</div>
+<div>
+    <span class="text-danger"></span>
+</div>

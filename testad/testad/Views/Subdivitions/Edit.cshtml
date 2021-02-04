@@ -1,0 +1,43 @@
+﻿@model testad.Models.Subdivition
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Редактирование структурного подразделения</h1>
+
+<hr />
+<div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="id" />
+        <table class="table table-striped d-xl-table table-dark">
+            <thead hidden>
+                <tr>
+
+                    <th>
+
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <label asp-for="subdiv" class="control-label"></label>
+                    </th>
+                    <th>
+                        <input asp-for="subdiv" class="form-control border-dark" />
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-warning" />
+            <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+        </div>
+    </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

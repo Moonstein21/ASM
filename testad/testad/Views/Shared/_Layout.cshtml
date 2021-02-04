@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - testad</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/"><img src="~/images/grg_logo_n.png" alt="Газпром газораспределение Астрахань " /></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/Requests" onclick="request();">Заявки<span class="sr-only">(current)</span></a>
+                </li>
+                @if ("AdminMSA;" == HttpContextAccessor.HttpContext.Session.GetString("GroupAd"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Requests/Archive">Архив</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Управление
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="/InformationSystems">Информационные системы</a>
+                                <a class="dropdown-item" href="/PostLists">Должности</a>
+                                <a class="dropdown-item" href="/Subdivitions">Структурные подразделения</a>
+                                <a class="dropdown-item" href="/DocumentsIBs">Документы по информационной безопасности</a>
+                                <a class="dropdown-item" href="/Mails">Настройка отправки сообщений</a>
+                                <a class="dropdown-item" href="/DLPs">DLP</a>
+                                <a class="dropdown-item" href="/laws/Create">Предоставить права доступа</a>
+                                <a class="dropdown-item" href="/Tablelaws">Просмотр прав</a>
+                                <a class="dropdown-item" href="/Rools">Управление Ролями</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <span class="navbar-text">
+                Пользователь - @HttpContextAccessor.HttpContext.Session.GetString("Name")
+            </span>
+
+        </div>
+    </nav>
+
+
+    <div class="container" >
+        <div class="pull-left">
+
+        </div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - AMS C- <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

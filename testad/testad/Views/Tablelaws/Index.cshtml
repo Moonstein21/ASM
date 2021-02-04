@@ -1,0 +1,73 @@
+﻿@model IEnumerable<testad.Models.Tablelaw>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <h1 class="text-center">Права доступа</h1>
+
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.spod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.pos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isystem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.role)
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td >
+                @Html.DisplayFor(modelItem => item.spod)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.pos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isystem)
+            </td>
+            <td>
+                    @for (int i = 0; i < item.role.Length; i++)
+                    {
+                        string rol = "";
+                        @foreach (var hh in item.role)
+                        {
+
+
+                            if (hh != ';')
+                            {
+                                rol = rol + hh;
+                            }
+                            else
+                            {
+                                @rol<br />
+                                rol = "";
+                            }
+                            i++;
+                        }
+
+                    }
+
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

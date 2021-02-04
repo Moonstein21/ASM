@@ -1,0 +1,37 @@
+﻿@model IEnumerable<testad.Models.Subdivition>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Список структурных подразделений</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Добавить новое подразделение</a>
+</p>
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.subdiv)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.subdiv)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning btn-sm">Редактировать</a>
+                    <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Удалить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

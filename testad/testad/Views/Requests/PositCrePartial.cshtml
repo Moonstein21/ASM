@@ -1,0 +1,67 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IndexViewModel
+
+<div>
+    <div>
+        <label asp-for="position" class="control-label">Должность</label>
+    </div>
+    <div class="input-group-prepend">
+        <select asp-for="position" class="custom-select" id="select">
+            @if (Model == null)
+            {
+                <option>элементы не найдены</option>
+            }
+            else
+            {
+                @foreach (PostList post in Model.PostLists)
+                {
+                    if (post.Position == HttpContextAccessor.HttpContext.Session.GetString("Dolzh"))
+                    {
+                        @foreach (PostList post1 in Model.PostLists)
+                        {
+                            if (post1.postlistlvl >= post.postlistlvl)
+                            {
+                                List<string> number = new List<string> { };
+                                @foreach (Tablelaw law in Model.Tablelaws)
+                                {
+                                    number.Add(law.pos);
+                                    if (law.spod == HttpContextAccessor.HttpContext.Session.GetString("Deportment"))
+                                    {
+                                        if (law.pos == post1.Position)
+                                        {
+                                            int j = 0;
+                                            for (int i = 0; i < number.Count; i++)
+                                            {
+                                                foreach (string jj in number)
+                                                {
+                                                    if (jj == post1.Position)
+                                                    {
+                                                        j = j+1;
+                                                    }
+                                                    i++;
+                                                }
+                                            }
+                                            if (j == 1)
+                                            {
+                                                <option value="@post1.Position">@post1.Position</option>
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <span class="text-danger"></span>
+    </div>
+</div>

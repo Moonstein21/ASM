@@ -1,0 +1,104 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IndexViewModel2
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Добавление правила</h1>
+<hr />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+</head>
+<body>
+    <form asp-action="Create">
+        <div>
+            <div>
+                @HttpContextAccessor.HttpContext.Session.GetString("spodr")
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped d-xl-table table-dark">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                @foreach (var item in HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("inf"))
+                                {
+                                    <th>
+                                        @item
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("posit").Count; i++)
+                            {
+
+                                @foreach (var iten in HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("posit"))
+                                {
+                                    <tr>
+                                        <td>
+                                            @iten
+                                        </td>
+                                        @for (int j = 0; j < HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("inf").Count; j++)
+                                        {
+                                            @foreach (var item in HttpContextAccessor.HttpContext.Session.GetObjectFromJson<List<string>>("inf"))
+                                            {
+                                                <td>
+                                                    <div class="form-check">
+                                                        @foreach (var hh in Model.InformationSystems)
+                                                        {
+                                                            if (item == hh.ListSystem)
+                                                            {
+                                                                string rol = "";
+                                                                @foreach (var s in hh.lvrol)
+                                                                {
+                                                                    if (s != ';')
+                                                                    {
+                                                                        rol = rol + s;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <label><input class="form-check-input" type="checkbox" id="@i@j" value="@i;@j;@rol;" name="names" >@rol</label><br />
+                                                                        rol = "";
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    </div>
+                                                </td>
+                                                j++;
+                                            }
+                                        }
+                                    </tr>
+                                    i++;
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           
+            <hr />
+        </div>
+
+        <div>
+            <input type="submit" value="Создать" class="btn btn-success" id="btn" />
+        </div>
+    </form>
+</body>
+
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
