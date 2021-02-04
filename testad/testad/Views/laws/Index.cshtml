@@ -1,0 +1,26 @@
+﻿@model IEnumerable<testad.Models.law>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Список прав доступа к информационным системам</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Добавить новые правила</a>
+</p>
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.infsystem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       
+    </tbody>
+</table>
+

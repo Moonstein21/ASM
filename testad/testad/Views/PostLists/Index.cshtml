@@ -1,0 +1,43 @@
+﻿@model IEnumerable<testad.Models.PostList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Список должностей</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Добавить новую должность</a>
+</p>
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.postlistlvl)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.postlistlvl)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id" class="btn btn-warning btn-sm">Редактировать</a>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

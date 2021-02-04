@@ -1,0 +1,38 @@
+﻿@model testad.Models.PostList
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1 class="text-center">Вы действительно хотите удалить эту должность?</h1>
+
+<div>
+    <table class="table table-striped d-xl-table table-dark">
+        <thead hidden>
+            <tr>
+
+                <th>
+
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position)
+                </th>
+                <th>
+                    @Html.DisplayFor(model => model.Position)
+                </th>
+            </tr>
+        </tbody>
+    </table>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+    </form>
+</div>
+

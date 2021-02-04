@@ -1,0 +1,45 @@
+﻿@model testad.Models.PostList
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Добавление новой должности</h1>
+<hr />
+
+        <form asp-action="Create">
+            <div class="row">
+                <div class="col">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Position" class="control-label"></label>
+                        <input asp-for="Position" class="form-control" />
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="postlistlvl" class="control-label"></label>
+                        <input asp-for="postlistlvl" class="form-control" />
+                        <span asp-validation-for="Position" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Создать" class="btn btn-success" />
+                        <a asp-action="Index" class="btn btn-primary">Вернуться назад</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <label><strong>Примечания</strong></label><br />
+                    <p>
+                        <label><i><strong>Чем ниже уровень должности, тем больше она имеет привилегии</strong></i></label><br />
+                    </p>
+                    <p>
+                        <lavel><i>Для Управляющих должностей используется цифра от 1 до 4</i></lavel><br />
+                        <label><i>Для ведущих должностей цифра от 5 до 7</i></label><br />
+                        <label><i>Для остальных должностей цифра от 8 и ниже</i></label>
+                    </p>
+                </div>
+            </div>  
+        </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

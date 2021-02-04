@@ -1,0 +1,155 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+       function hello1() {
+           document.getElementById("input211").value;
+           var theCheck1 = document.getElementById("check1").checked;
+           var theCheck2 = document.getElementById("check2").checked;
+           var theCheck3 = document.getElementById("check3").checked;
+           var theLabelnet = document.getElementById("labelnet").textContent;
+           var theLabelemail = document.getElementById("labelemail").textContent;
+           var thelabelfail = document.getElementById("labelfail").textContent;
+           var thelabelinternet = document.getElementById("labelinternet").value;
+           
+           
+           document.getElementById("input211").value = "Доступ в сеть интернет - " + thelabelinternet + ";";
+           if (theCheck1 == true) {
+               document.getElementById("input211").value = document.getElementById("input211").value + "Сетевое рабочее место; ";
+           }
+           if (theCheck2 == true) {
+               document.getElementById("input211").value = document.getElementById("input211").value + "Электронный почтовый ящик; ";
+           }
+           if (theCheck3 == true) {
+               document.getElementById("input211").value =document.getElementById("input211").value + "Доступ к сетевому файловому ресурсу; ";
+           }
+        }
+        var i = 1;
+        function addelem() {
+            document.getElementById("input2").value = "";
+             if (document.getElementById(1).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select01").value + "; ";
+            }
+            if (document.getElementById(2).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select02").value + "; ";
+            }
+             if (document.getElementById(3).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select03").value + "; ";
+            }
+             if (document.getElementById(4).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select04").value + "; ";
+            }
+             if (document.getElementById(5).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select05").value + "; ";
+            }
+             if (document.getElementById(6).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select06").value + "; ";
+            }
+             if (document.getElementById(7).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select07").value + "; ";
+            }
+             if (document.getElementById(8).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select08").value + "; ";
+            }
+             if (document.getElementById(9).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select09").value + "; ";
+            }
+            if (document.getElementById(10).hasAttribute("hidden") == false) {
+                document.getElementById("input2").value += document.getElementById("Select10").value + "; ";
+            }
+        }
+        function ibozn(){
+            document.getElementById("ib1").setAttribute("hidden", "");
+            document.getElementById("ib2").removeAttribute("hidden");
+            document.getElementById("checkib").checked = true;
+            document.getElementById("checkib2").checked = true;
+        }
+    </script>
+</head>
+<body>
+    <h1 class="text-center">Форма заполнения заявки</h1>
+    <hr />
+    <div>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div>
+                <h4><label>Выберите тип заявки</label></h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" asp-for="newuser" checked>
+                    <label class="form-check-label" for="exampleRadios1" asp-for="newuser"> </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" asp-for="olduser">
+                    <label class="form-check-label" for="exampleRadios2" asp-for="olduser"></label>
+                </div>
+            </div>
+            <hr />
+            <div>
+                @await Html.PartialAsync("SubCrePartial")
+            </div>
+            <div class="row">
+                <div class="col">
+                    @await Html.PartialAsync("FIOPartial")
+                </div>
+                <div class="col">
+                    @await Html.PartialAsync("PositCrePartial")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    @await Html.PartialAsync("NumPhoneCrePertial")
+                </div>
+                <div class="col">
+                    @await Html.PartialAsync("NumCabCrePartial")
+                </div>
+                <div class="col">
+                    @await Html.PartialAsync("INVCrePartial")
+                </div>
+            </div>
+            <hr />
+            <div>
+                @await Html.PartialAsync("PolIBCrePartial")
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    @await Html.PartialAsync("BaseServCrePArtial")
+                </div>
+                <div class="col">
+                    @await Html.PartialAsync("InfSystemCrePartial")
+                </div>
+            </div>
+            <div hidden>
+                <label asp-for="status"></label>
+                <input asp-for="status" value="Открыта" />
+                <input asp-for="marh" value="1" />
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col">
+                    <a asp-action="Index" class="btn btn-primary">Вернуться к списку заявок</a>
+                </div>
+                <div class="form-group col">
+                    <input type="submit" value="Создать новую заявку" class="btn btn-success" />
+                </div>
+            </div>
+        </form>
+
+    </div>
+    
+</body>
+</html>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

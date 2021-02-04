@@ -1,0 +1,76 @@
+﻿@model testad.Models.Mail
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Добавление нового SNTP</h1>
+<hr />
+
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col">
+            <div>
+                <div>
+                    <label asp-for="address" class="control-label">Адрес SMTP - сервера</label>
+                </div>
+                <div>
+                    <input asp-for="address" class="form-control" />
+                </div>
+                <span asp-validation-for="address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <div>
+                    <label asp-for="port" class="control-label">Порт SMTP - сервера</label>
+                </div>
+                <div class="col-md-4">
+                    <input asp-for="port" class="form-control" />
+                </div>
+                <span asp-validation-for="port" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div>
+                <div>
+                    <label asp-for="login" class="control-label">Ползователь</label>
+                </div>
+                <div>
+                    <input asp-for="login" class="form-control" />
+                </div>
+                <span asp-validation-for="login" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col">
+            <div>
+                <div>
+                    <label asp-for="password" class="control-label">Пароль</label>
+                </div>
+                <div>
+                    <input asp-for="password" class="form-control" />
+                </div>
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="form-group">
+            <div class="col">
+                <input type="submit" value="Создать" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Вернуться назад</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,114 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel1
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Добавление правила</h1>
+<hr />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+
+</head>
+<body>
+    <form asp-action="Create">
+        <div>
+            <div>
+                @await Html.PartialAsync("SubCrePartial")
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped d-xl-table table-dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.PostLists)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.PostLists)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label><input class="form-check-input" type="checkbox" id="check2" value="@Html.DisplayFor(modelItem => item.Position)">@Html.DisplayFor(modelItem => item.Position)</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table table-striped d-xl-table table-dark">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InformationSystems)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.InformationSystems)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label><input class="form-check-input" type="checkbox" id="check1" value="@Html.DisplayFor(modelItem => item.ListSystem)">@Html.DisplayFor(modelItem => item.ListSystem)</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <hr />
+            <div>
+                <div class="text-center">
+                    <p>
+                        <button id="btn" class="btn btn-success">Предоставить права</button>
+                    </p>
+                    <p id="result" class="text-success"></p>
+                    <label id="result"></label>
+                    <input hidden asp-for="infsystem" id="text" type="text" class="form-control">
+                    <input hidden asp-for="position" id="text1" type="text" class="form-control">
+
+                </div>
+                <script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    $('#btn').click(function () {
+                        $('#result').html('');
+                        $('#text').val('');
+                        $('input:checkbox[id^="check1"]:checked').each(function () {
+                            $('#text').val($('#text').val() + $(this).val() + ';');
+                        });
+
+                        $('#text1').val('');
+                        $('input:checkbox[id^="check2"]:checked').each(function () {
+                            $('#text1').val($('#text1').val() + $(this).val() + ';');
+                        });
+                    });
+                </script>
+
+            </div>
+            <hr />
+        </div>
+    </form>
+</body>
+
+</html>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

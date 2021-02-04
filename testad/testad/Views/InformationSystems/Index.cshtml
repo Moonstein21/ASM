@@ -1,0 +1,41 @@
+﻿@model IEnumerable<testad.Models.InformationSystem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Информационные системы</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Добавить новую информационную систему</a>
+</p>
+<table class="table table-striped d-xl-table table-dark">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ListSystem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lvrol)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ListSystem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lvrol)
+            </td>
+            <td>
+                <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

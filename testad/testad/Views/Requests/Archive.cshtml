@@ -1,0 +1,93 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model IndexViewModel
+<!-- Button trigger modal -->
+<div>
+    <label>Информационные системы (согласно реестру ИСиС)</label>
+</div>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" 0>
+    Выбрать ИСиС
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Добавление информационных систем</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped d-xl-table table-dark">
+                    <tbody>
+                        @foreach (PostList post in Model.PostLists)
+                        {
+                            if (post.Position == HttpContextAccessor.HttpContext.Session.GetString("Dolzh"))
+                            {
+                                @foreach (PostList post1 in Model.PostLists)
+                                {
+                                    if (post1.postlistlvl >= post.postlistlvl)
+                                    {
+                                        @foreach (Tablelaw law in Model.Tablelaws)
+                                        {
+                                            if (law.spod == HttpContextAccessor.HttpContext.Session.GetString("Deportment"))
+                                            {
+                                                if (law.pos == post1.Position)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <label>@law.pos</label>
+                                                        </td>
+                                                        <td>
+                                                            <label>@law.isystem</label>
+                                                        </td>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                @for (int i = 0; i < law.role.Length; i++)
+                                                                {
+                                                                    string rol = "";
+                                                                    @foreach (var hh in law.role)
+                                                                    {
+                                                                        if (hh != ';')
+                                                                        {
+                                                                            rol = rol + hh;
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <label><input class="form-check-input" type="checkbox" name="names" value="@law.pos*@law.isystem*@rol;">@rol</label><br />
+                                                                            rol = "";
+                                                                        }
+                                                                        i++;
+                                                                    }
+                                                                }
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+                <br />
+                <div>
+                    <span class="text-danger"></span>
+                </div>
+                <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                <input type="button" value="Сохранить" onclick="addelem();" class="btn btn-success" data-dismiss="modal">
+            </div>
+        </div>
+    </div>
+</div>

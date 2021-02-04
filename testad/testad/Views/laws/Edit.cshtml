@@ -1,0 +1,72 @@
+﻿@model testad.Models.Mail
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="text-center">Редактирование должности сотрудника</h1>
+
+<hr />
+<div>
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="id" />
+        <table class="table table-striped d-xl-table table-dark">
+            <thead hidden>
+                <tr>
+
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <label asp-for="address" class="control-label"></label>
+                    </th>
+                    <th>
+                        <input asp-for="address" class="form-control" />
+                    </th>
+                    <th>
+                        <label asp-for="port" class="control-label"></label>
+                    </th>
+                    <th>
+                        <input asp-for="port" class="form-control" />
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        <label asp-for="login" class="control-label"></label>
+                    </th>
+                    <th>
+                        <input asp-for="login" class="form-control" />
+                    </th>
+                    <th>
+                        <label asp-for="password" class="control-label"></label>
+                    </th>
+                    <th>
+                        <input asp-for="password" class="form-control" />
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="Сохранить" class="btn btn-warning" />
+            <a asp-action="Index" class="btn btn-success">Вернуться назад</a>
+        </div>
+    </form>
+ 
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

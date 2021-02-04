@@ -1,0 +1,29 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel
+
+    <div >
+        <div>
+            <label asp-for="position" class="control-label">Должность</label>
+        </div>
+        <div class="input-group-prepend">
+            <select asp-for="position" class="custom-select" id="inputGroupSelect01">
+                @if (Model == null)
+                {
+                    <option>элементы не найдены</option>
+                }
+                else
+                {
+                    @foreach (PostList post in Model.PostLists)
+                    {
+                        <option>@post.Position</option>
+
+                    }
+                }
+            </select>
+        </div>
+        <div>
+            <span class="text-danger"></span>
+        </div>
+    </div>

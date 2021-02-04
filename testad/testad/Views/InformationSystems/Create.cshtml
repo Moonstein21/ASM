@@ -1,0 +1,92 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel3
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-center">Создать новую ИСиС</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ListSystem" class="control-label"></label>
+                <input asp-for="ListSystem" class="form-control" />
+                <span asp-validation-for="ListSystem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="lvrol" class="control-label"></label>
+                <div class="row">
+                    <div class="col">
+                        <input asp-for="lvrol" id="text" class="form-control" />
+                        <span asp-validation-for="lvrol" class="text-danger"></span>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                            Выберите Роли
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Список Ролей</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-striped d-xl-table table-dark">
+                          
+                                            <tbody>
+                                                @foreach (var item in Model.Rools)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-check">
+                                                                <label><input class="form-check-input" type="checkbox" id="check1" value="@Html.DisplayFor(modelItem => item.rollic)">@Html.DisplayFor(modelItem => item.rollic)</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                        <button type="button" id="btn" class="btn btn-primary" data-dismiss="modal">Сохранить</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+               
+                
+            <div class="form-group">
+                <input type="submit" value="Создать" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Вернуться назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://snipp.ru/cdn/jquery/2.1.1/jquery.min.js"></script>
+<script>
+                    $('#btn').click(function () {
+                        $('#text').val('');
+                        $('input:checkbox[id^="check1"]:checked').each(function () {
+                            $('#text').val($('#text').val() + $(this).val() + ';');
+                        });
+                    });
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

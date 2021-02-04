@@ -1,0 +1,110 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IndexViewModel
+
+<div>
+    <label>Перечень базовых сервисов</label>
+</div>
+<div>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Выбрать базовые сервисы
+    </button>
+ 
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Базовые сервисы</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1">
+                        <label class="form-check-label" for="check1" id="labelnet">
+                            Сетевое рабочее место
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check2">
+                        <label class="form-check-label" for="check2" id="labelemail">
+                            Электронный почтовый ящик
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check3">
+                        <label class="form-check-label" for="check3" id="labelfail">
+                            Доступ к сетевому файловому ресурсу
+                        </label>
+                    </div>
+                    <hr />
+                    <div>
+                        <label class="control-label">Доступ в сеть Интернет</label>
+                    </div>
+                    <div class="input-group-prepend">
+                        <select class="custom-select" id="labelinternet" name="internet">
+                            @foreach (PostList post3 in Model.PostLists)
+                            {
+                                if (post3.Position == HttpContextAccessor.HttpContext.Session.GetString("Dolzh"))
+                                {
+                                    if (post3.postlistlvl <= 5)
+                                    {
+                                        <option>
+                                            Блокировать
+                                        </option>
+                                        <option>
+                                            Ограниченный
+                                        </option>
+                                        <option>
+                                            Стандартный
+                                        </option>
+                                        <option>
+                                            Полный
+                                        </option>
+                                    }
+                                    if (post3.postlistlvl > 5 && post3.postlistlvl < 7)
+                                    {
+                                        <option>
+                                            Блокировать
+                                        </option>
+                                        <option>
+                                            Ограниченный
+                                        </option>
+                                        <option>
+                                            Стандартный
+                                        </option>
+                                    }
+                                    if (post3.postlistlvl > 7)
+                                    {
+                                        <option>
+                                            Блокировать
+                                        </option>
+                                        <option>
+                                            Ограниченный
+                                        </option>
+                                    }
+                                }
+                            }
+
+                        </select>
+                    </div>
+                    <div hidden>
+                        <label asp-for="baseservers"></label><br>
+                        <input type="text" asp-for="baseservers" class="form-control" id="input211"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Закрыть</button>
+                    <input type="button" class="btn btn-success" value="Сохранить" name="hello" onclick="hello1();" data-dismiss="modal">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

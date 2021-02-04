@@ -1,0 +1,159 @@
+﻿@model testad.Models.Request
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="text-center">Информация о заявке  № @Html.DisplayFor(Model =>Model.id)</h1>
+
+<div>
+    <hr />
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr hidden>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.subdivision)</td>
+                <td>@Html.DisplayFor(model => model.subdivision)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.fio)</td>
+                <td>@Html.DisplayFor(model => model.fio)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.position)</td>
+                <td>@Html.DisplayFor(model => model.position)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.numberphone)</td>
+                <td>@Html.DisplayFor(model => model.numberphone)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.numberroom)</td>
+                <td>@Html.DisplayFor(model => model.numberroom)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.inventorynumber)</td>
+                <td>@Html.DisplayFor(model => model.inventorynumber)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.baseservers)</td>
+                <td>@Html.DisplayFor(model => model.baseservers)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.informationsystem)</td>
+                <td>@Html.DisplayFor(model => model.informationsystem)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.documents)</td>
+                @if (Model.documents == true)
+                {
+                    <td>Ознакомлен</td>
+                }
+                else
+                {
+                    <td>Не ознакомлен</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.leadersubdivision)</td>
+                @if (Model.leadersubdivision == true)
+                {
+                    <td>Согласовано</td>
+                }
+                else
+                {
+                    <td>Не согласовано</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.departmentoz)</td>
+                @if (Model.departmentoz == true)
+                {
+                    <td>Согласовано</td>
+                }
+                else
+                {
+                    <td>Не согласовано</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.departmentib)</td>
+                @if (Model.departmentib == true)
+                {
+                    <td>Согласовано</td>
+                }
+                else
+                {
+                    <td>Не согласовано</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.signIT)</td>
+                @if (Model.signIT == true)
+                {
+                    <td>Согласовано</td>
+                }
+                else
+                {
+                    <td>Не согласовано</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.status)</td>
+                <td>@Html.DisplayFor(model => model.status)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.marh)</td>
+                @if (Model.marh == 0)
+                {
+                    <td>Отказано в предоставлении прав</td>
+                }
+                @if (Model.marh == 1)
+                {
+                    <td>На соглосовании у руководителя структурного подразделения</td>
+                }
+                @if (Model.marh == 2)
+                {
+                    <td>На соглосовании у владельца ИСиС</td>
+                }
+                @if (Model.marh == 3)
+                {
+                    <td>На соглосовании у ответственного по ИБ</td>
+                }
+                @if (Model.marh == 4)
+                {
+                    <td>На соглосовании у руководителя отдела ИТиС</td>
+                }
+                @if (Model.marh == 5)
+                {
+                    <td>Успешно выполнена</td>
+                }
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.login)</td>
+                <td>@Html.DisplayFor(model => model.login)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.namecreated)</td>
+                <td>@Html.DisplayFor(model => model.namecreated)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.deportmencreated)</td>
+                <td>@Html.DisplayFor(model => model.deportmencreated)</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.positcreated)</td>
+                <td>@Html.DisplayFor(model => model.positcreated)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a asp-action="Index" class="btn btn-primary">Вернуться к списку</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

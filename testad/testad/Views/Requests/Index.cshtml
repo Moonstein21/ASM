@@ -1,0 +1,230 @@
+﻿@model IEnumerable<testad.Models.Request>
+@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Index";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+</head>
+<body>
+    <h1 class="text-center">Список заявок </h1>
+    <p>
+        <a asp-action="Create" class="btn btn-success">Создание новой заявки</a>
+    </p>
+    <table class="table table-striped d-xl-table table-dark">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.fio)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.subdivision)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.position)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (HttpContextAccessor.HttpContext.Session.GetString("Email") == item.emailcreated)
+                {
+                    if ("AdminMSA;" != HttpContextAccessor.HttpContext.Session.GetString("GroupAd"))
+                    {
+                        if ("BossDepartmentMSA;" != HttpContextAccessor.HttpContext.Session.GetString("GroupBd"))
+                        {
+                            if (item.marh != 2 && "WriteIS;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIS"))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.subdivision)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.status)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a> 
+                                    </td>
+                                </tr>
+                            }
+                            if (item.marh != 3 && "WriteIB;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIB"))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.subdivision)
+                                    </td>
+                                     <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.status)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                    </td>
+                                </tr>
+                            }
+                            if (item.marh != 4 && "WriteIT;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIT"))
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.subdivision)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.status)
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                    }
+                }
+                if (item.subdivision == HttpContextAccessor.HttpContext.Session.GetString("Deportment"))
+                {
+                    if ("BossDepartmentMSA;" == HttpContextAccessor.HttpContext.Session.GetString("GroupBd"))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fio)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.subdivision)
+                            </td>
+                            <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                    </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.status)
+                            </td>
+                            <td>   
+                                <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                @if (item.marh == 1)
+                                {
+                                    <a asp-action="Sign" asp-route-id="@item.id" class="btn btn-primary btn-sm">Подписать</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+                if ("WriterMSA;" == HttpContextAccessor.HttpContext.Session.GetString("GroupWr"))
+                {
+                    if ("AdminMSA;" != HttpContextAccessor.HttpContext.Session.GetString("GroupAd"))
+                    {
+                        if (item.marh == 2 && "WriteIS;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIS"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subdivision)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.status)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                    <a asp-action="Sign" asp-route-id="@item.id" class="btn btn-primary btn-sm">Подписать</a>
+                                </td>
+                            </tr>
+                        }
+                        if (item.marh == 3 && "WriteIB;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIB"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subdivision)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.status)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                    <a asp-action="Sign" asp-route-id="@item.id" class="btn btn-primary btn-sm">Подписать</a>
+                                </td>
+                            </tr>
+                        }
+                        if (item.marh == 4 && "WriteIT;" == HttpContextAccessor.HttpContext.Session.GetString("GroupIT"))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.fio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.subdivision)
+                                </td>
+                                <td>
+                                        @Html.DisplayFor(modelItem => item.position)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.status)
+                                </td>
+                                <td>
+                                    <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                                    <a asp-action="Sign" asp-route-id="@item.id" class="btn btn-primary btn-sm">Подписать</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                }
+                if ("AdminMSA;" == HttpContextAccessor.HttpContext.Session.GetString("GroupAd"))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fio)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.subdivision)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.position)
+                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.status)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.id" class="btn btn-info btn-sm">Подробнее</a>
+                            <a asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger btn-sm">Удалить</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,29 @@
+﻿@using testad.Models.ViewModels
+@using testad.Models
+
+@model IndexViewModel1
+
+
+
+<div>
+    <label asp-for="sp" control-label">Структурное подразделение</label>
+</div>
+<div class="input-group-prepend">
+    <select asp-for="sp" class="custom-select" id="inputGroupSelect01">
+        @if (Model == null)
+        {
+            <option>элементы не найдены</option>
+        }
+        else
+        {
+            @foreach (Subdivition sub in Model.Subdivitions)
+            {
+                <option>@sub.subdiv</option>
+
+            }
+        }
+    </select>
+</div>
+<div>
+    <span class="text-danger"></span>
+</div>
